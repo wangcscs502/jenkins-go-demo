@@ -18,7 +18,7 @@ node('wcs-jnlp') {
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        withCredentials([usernamePassword(credentialsId: 'aliyunregistry', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} registry.cn-beijing.aliyuncs.com"
             sh "docker push registry.cn-beijing.aliyuncs.com/dspy-php-test/jenkins-go-demo:${build_tag}"
         }
